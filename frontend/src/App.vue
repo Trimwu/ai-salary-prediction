@@ -42,69 +42,119 @@
             <span>输入预测参数</span>
           </div>
 
-          <!-- <el-form :model="form" label-position="top" class="predict-form" :disabled="loading">
-            <el-row :gutter="20">
-              <el-col :span="12">
-                <el-form-item label="职位方向">
-                  <el-select v-model="form.position" placeholder="选择职位" size="large" style="width:100%">
-                    <el-option v-for="p in options.positions" :key="p" :label="p" :value="p" />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="最高学历">
-                  <el-select v-model="form.education" placeholder="选择学历" size="large" style="width:100%">
-                    <el-option v-for="e in options.educations" :key="e" :label="e" :value="e" />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="职位方向">
+                <el-select
+                  v-model="form.position"
+                  placeholder="选择职位"
+                  size="large"
+                  style="width: 100%"
+                >
+                  <el-option
+                    v-for="p in options.positions"
+                    :key="p"
+                    :label="p"
+                    :value="p"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="最高学历">
+                <el-select
+                  v-model="form.education"
+                  placeholder="选择学历"
+                  size="large"
+                  style="width: 100%"
+                >
+                  <el-option
+                    v-for="e in options.educations"
+                    :key="e"
+                    :label="e"
+                    :value="e"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
 
-            <el-row :gutter="20">
-              <el-col :span="12">
-                <el-form-item label="目标城市">
-                  <el-select v-model="form.city" placeholder="选择城市" size="large" style="width:100%">
-                    <el-option v-for="c in options.cities" :key="c" :label="c" :value="c" />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="行业领域">
-                  <el-select v-model="form.industry" placeholder="选择行业" size="large" style="width:100%">
-                    <el-option v-for="i in options.industries" :key="i" :label="i" :value="i" />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-form-item label="目标城市">
+                <el-select
+                  v-model="form.city"
+                  placeholder="选择城市"
+                  size="large"
+                  style="width: 100%"
+                >
+                  <el-option
+                    v-for="c in options.cities"
+                    :key="c"
+                    :label="c"
+                    :value="c"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="行业领域">
+                <el-select
+                  v-model="form.industry"
+                  placeholder="选择行业"
+                  size="large"
+                  style="width: 100%"
+                >
+                  <el-option
+                    v-for="i in options.industries"
+                    :key="i"
+                    :label="i"
+                    :value="i"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
 
-            <el-form-item label="公司规模">
-              <el-select v-model="form.company_size" placeholder="选择规模" size="large" style="width:100%">
-                <el-option v-for="s in options.company_sizes" :key="s" :label="s" :value="s" />
-              </el-select>
-            </el-form-item>
-
-            <el-form-item :label="`工作年限：${form.experience} 年`">
-              <el-slider
-                v-model="form.experience"
-                :min="0" :max="20" :step="1"
-                show-stops
-                :marks="{ 0: '应届', 3: '3年', 5: '5年', 10: '10年', 20: '20年' }"
-                class="exp-slider"
-              />
-            </el-form-item>
-
-            <el-button
-              type="primary"
+          <el-form-item label="公司规模">
+            <el-select
+              v-model="form.company_size"
+              placeholder="选择规模"
               size="large"
-              :loading="loading"
-              @click="handlePredict"
-              class="predict-btn"
-              :disabled="!isFormValid"
+              style="width: 100%"
             >
-              <el-icon v-if="!loading"><MagicStick /></el-icon>
-              {{ loading ? '预测中...' : '开始预测' }}
-            </el-button>
-          </el-form> -->
+              <el-option
+                v-for="s in options.company_sizes"
+                :key="s"
+                :label="s"
+                :value="s"
+              />
+            </el-select>
+          </el-form-item>
+
+          <el-form-item :label="`工作年限：${form.experience} 年`">
+            <el-slider
+              v-model="form.experience"
+              :min="0"
+              :max="20"
+              :step="1"
+              show-stops
+              :marks="{ 0: '应届', 3: '3年', 5: '5年', 10: '10年', 20: '20年' }"
+              class="exp-slider"
+            />
+          </el-form-item>
+
+          <el-button
+            type="primary"
+            size="large"
+            :loading="loading"
+            @click="handlePredict"
+            class="predict-btn"
+            :disabled="!isFormValid"
+          >
+            <el-icon v-if="!loading"><MagicStick /></el-icon>
+            {{ loading ? "预测中..." : "开始预测" }}
+          </el-button>
           <PredictForm
             :options="options"
             :loading="loading"
@@ -334,21 +384,20 @@ async function handlePredict() {
 }
 // 接收子组件 emit 的表单数据
 async function handlePredictFromForm(formData) {
-  loading.value = true
-  result.value = null
+  loading.value = true;
+  result.value = null;
   try {
-    const res = await predictSalary(formData)
-    result.value = res.data
+    const res = await predictSalary(formData);
+    result.value = res.data;
     // 同步 form 数据用于 summaryTags 展示
-    Object.assign(form, formData)
-    ElMessage.success('预测完成！')
+    Object.assign(form, formData);
+    ElMessage.success("预测完成！");
   } catch {
-    ElMessage.error('预测失败，请检查后端服务是否启动')
+    ElMessage.error("预测失败，请检查后端服务是否启动");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
-
 
 onMounted(async () => {
   try {
